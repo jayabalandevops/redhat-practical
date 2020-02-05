@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My School Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-size: 28px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.navbar .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.navbar a:hover .dropdown:hover .dropbtn {
+  background-color: #e9e9e9;
+  color: black;
+}
+
+.dropdown-content a:hover {
+  background-color: #e9e9e9;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .navbar a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .navbar.responsive .dropdown {float: none;}
+  .navbar.responsive .dropdown-content {position: relative;}
+  .navbar.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+
+.navbar .login-container {
+  float: right;
+}
+
+.navbar input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  width:120px;
+}
+
+.navbar .login-container button {
+  float: right;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background-color: #555;
+  color: white;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar .login-container button:hover {
+  background-color: blue;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .login-container {
+    float: none;
+  }
+  .navbar a, .navbar input[type=text], .navbar .login-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .navbar input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/* Style the footer */
+footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: right;
+  color: white;
+}
+
+</style>
+</head>
+<body>
+
+<div id="main">
+
+<span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<div class="header">
+  <img src="myschool.png" width="300" height="200" align="center">
+  <h2>My School.</h2>
+  <p>CBSE Curriculum with life skills.</p>
+</div>
+
+<div class="navbar" id="myNavbar">
+  <a class="active" href="javascript:void(0)">Home</a>
+  <a href="admissions.html">Admissions</a>
+  <a href="javascript:void(0)">Teachers</a>
+  <a href="javascript:void(0)">Classes</a>
+  <div class="dropdown">
+    <button class="dropbtn">Students
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="class1.html">Class 1</a>
+      <a href="class2.html"=>Class 2</a>
+      <a href="class9.html">Class 9</a>
+    </div>
+  </div>
+  <a href="contactus.html">Contact</a>
+  <div class="login-container">
+    <form action="login_action_page.html">
+      <input type="text" placeholder="Username" name="username">
+      <input type="password" placeholder="Password" name="psw">
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction2()">&#9776;</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Teachers</a>
+  <a href="#">Classes</a>
+  <a href="#">Students</a>
+  <a href="#">Admissions</a>
+  <a href="#">Contact</a>
+  <div class="login-container">
+    <form action="login_action_page.html">
+      <input type="text" placeholder="Username" name="username">
+      <input type="text" placeholder="Password" name="psw">
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+
+<div class="content">
+  <h3>A BRAND-NEW CBSE SCHOOL TO EQUIP YOUR CHILD WITH THE FUTURE SKILLS.</h3>
+
+  <p>None of us could have foreseen that smartphones would change our way of life. Many of today’s careers did not exist 10 years ago. Professions in Social Media, Nanotechnology, Cyber Security, Green Technology, and Cloud Computing, only developed in recent years. Our brand-new curriculum equips your child with the future skills to “Open Future Doors” of opportunities.</p>
+  <p>When your child enters the workforce in 2030, what careers await him or her? Will your child be ready to open those future doors of opportunities?</p>
+  <p>Discover how our CBSE curriculum equips your child with the future-skills to “Open Future Doors” of opportunities.</p>
+  <p>Watch this video to discover some of the exciting iSTEAM learning experiences at Our school!</p>
+  <p>Locate the nearest centre here or if you share our vision of preparing our future.</p>
+  <div >												
+		<img src="iSTEAM_Logo.png">
+  </div>
+  <h3>Cultivate Future Skills Through iSTEAM</h3>
+  <p>The robots have arrived and are here to stay. Your mobile phone is a robot, albeit without arms and legs, and it is getting smarter every year. Within a decade, robots and artificial intelligence (AI) will be taking over and eliminating many jobs.</p>
+  <p>Our brand-new state-of-the-art curriculum exposes your child to iSTEAM (Innovation, Science, Technology, Engineering, Arts and Mathematics) and has been designed to develop these essential future skills in fun and age-appropriate ways to prepare him/her for future success.</p>
+  <p>iSTEAM embraces the philosophy of “thinking with hands”, and consists of hands-on inquiry and open-ended exploration of interesting topics which will prepare your child for the future.</p>
+  
+  <h3>Primary school with hands-on</h3>
+  <p>For the Primary students, iSTEAM is embedded into everyday experiences through developmentally appropriate hands-on activities that are concrete and related to the world around them. By tapping on your child’s innate curiosity and sense of wonder about the world, your child will be given opportunities to explore, inquire, learn and innovate in little ways. This will set the foundation for progression into the iSTEAM curriculum at Primary 1 to 5 classes.</p>
+  
+  <h3>High school with cognitive skills</h3>
+  <p>By the time your child enters high school, your child would be ready to take on bigger projects that require higher cognitive skills. Our iSTEAM curriculum will enable your child to investigate, innovate, make comparisons and predictions, test out ideas and share discoveries with their peers. Extracting DNA, coding and robotics, building circuits and creating chemical reactions are just some of the exciting activities that your child will have the opportunity to experience in our iSTEAM curriculum.</p>
+  
+  <div >												
+		<a href="https://www.youtube.com/channel/UCYI_xWYXZcNPw5DBf39ZqAw">Follow this link to Watch our students activities, in you tube...!</a>
+  </div>
+</div>
+
+</div>
+<script>
+window.onscroll = function() {myFunction()};
+
+var xnavbar = document.getElementById("myNavbar");
+var sticky = xnavbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    xnavbar.classList.add("sticky")
+  } else {
+    xnavbar.classList.remove("sticky");
+  }
+}
+
+function myFunction2() {
+  var x = document.getElementById("myNavbar");
+  if (x.className === "navbar") {
+    x.className += " responsive";
+  } else {
+    x.className = "navbar";
+  }
+}
+
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+<footer>
+  <p>
+  <div>												
+		<a href="home.html">Go to top...!</a>
+  </div>
+  </p>
+</footer>
+</body>
+</html>
